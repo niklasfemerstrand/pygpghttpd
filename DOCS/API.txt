@@ -26,8 +26,8 @@ keypair has been created, a private key needs to be deleted before the public
 key can be deleted.
 
 {String}  cmd         keydel
-{Boolean} private     Default false
 {String}  fingerprint Fingerprint for key to delete
+{Boolean} private     Default false
 
 Exporting keys
 --------------

@@ -68,7 +68,7 @@ def do_something(connstream, data, origin, cmdstr):
 	allow_request = ""
 	response = ""
 
-	cors = []
+	cors = ["null"]
 	with open("accepted_domains.txt", 'r') as f:
 		lines = f.readlines()
 		for line in lines:
@@ -112,7 +112,9 @@ def do_gpg(cmdstr):
 		if cc[0] and cc[1]:
 			c[cc[0]] = cc[1]
 
-	if not c["cmd"]:
+	try:
+		c["cmd"]
+	except:
 		return("Missing cmdstr for GPG op")
 
 	for cmd_ok in cmds_ok:
