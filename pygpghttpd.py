@@ -3,11 +3,6 @@
 ###############################################################################
 # This HTTPD acts bridge to make OpenPGP functionality accessible for         #
 # JavaScript through locally installed GnuPG binaries and keyrings.           #
-# pygpghttpd is originally a part of the rc_openpgpjs project which           #
-# adds OpenPGP functionality to the Roundcube webmail client through the      #
-# OpenPGP.js library. pygpghttpd should be considered a separate project that #
-# grows out of rc_openpgpjs simulaneously as rc_openpgpjs gets support for    #
-# multiple drivers.                                                           #
 #                                                                             #
 # Copyright (C) Niklas Femerstrand <nik@qnrq.se>                              #
 #                                                                             #
