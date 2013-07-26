@@ -25,6 +25,7 @@
 import re, socket, ssl, sys, gnupg, json
 import _thread as thread
 from os.path import expanduser
+import urllib.parse
 
 home = expanduser("~")
 home += "/.gnupg/"
@@ -106,11 +107,11 @@ def do_gpg(cmdstr):
 		for cmd in cmds:
 			cc = cmd.split("=")
 			if cc[0] and cc[1]:
-				c[cc[0]] = cc[1]
+				c[cc[0]] = urllib.parse.unquote(cc[1])
 	else: # Single param
 		cc = cmdstr.split("=")
 		if cc[0] and cc[1]:
-			c[cc[0]] = cc[1]
+			c[cc[0]] = urllib.parse.unquote(cc[1])
 
 	if "cmd" not in c:
 		return("Missing cmdstr for GPG op")
@@ -149,9 +150,9 @@ def keygen(cmd):
 		return("Incorrect: length")
 
 	input_data = gpg.gen_key_input(key_type = cmd["type"], key_length = cmd["length"], name_real = cmd["name"], name_email = cmd["email"], passphrase = cmd["passphrase"], name_comment = "pygpghttpd")
-	keys = gpg.gen_key(input_data)
+	key = gpg.gen_key(input_data)
 
-	if keys:
+	if key:
 		return("1")
 	return("0")
 
