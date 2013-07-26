@@ -199,7 +199,7 @@ def encrypt(cmd):
 		if "passphrase" not in cmd:
 			return("Insufficient parameters: passphrase (needed since sign is set")
 
-	return(gpg.encrypt(cmd["data"], cmd["recipients"], sign = cmd["sign"], passphrase = cmd["passphrase"]))
+	return(str(gpg.encrypt(cmd["data"], cmd["recipients"], sign = cmd["sign"], passphrase = cmd["passphrase"])))
 
 def decrypt(cmd):
 	required = ["data", "passphrase"]

@@ -29,6 +29,10 @@
 			<table id="privkeys">
 				<thead><th>Keyid</th><th>Fingerprint</th><th>Algo</th><th>Length</th><th>Delete</th></thead>
 			</table>
+
+			<h2>Encrypt</h2>
+			<textarea id="data">Secrets</textarea>
+			<input type="button" value="Encrypt" onclick="encrypt();" />
 		</div>
 		<script src="./js/jquery-1.10.2.min.js"></script>
 		<script>
@@ -125,6 +129,16 @@
 				$.post("https://localhost:11337", {
 					cmd: "keyexport",
 					id: id
+				}, function(data) {
+					alert(data);
+				});
+			}
+
+			function encrypt() {
+				$.post("https://localhost:11337", {
+					cmd: "encrypt",
+					data: $("#data").val(),
+					recipients: "alice@foo.com"
 				}, function(data) {
 					alert(data);
 				});
