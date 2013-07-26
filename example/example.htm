@@ -31,8 +31,11 @@
 			</table>
 
 			<h2>Encrypt</h2>
-			<textarea id="data">Secrets</textarea>
+			<textarea id="encrypt_data">Secrets</textarea>
 			<input type="button" value="Encrypt" onclick="encrypt();" />
+			<h2>Decrypt</h2>
+			<textarea id="decrypt_data"></textarea>
+			<input type="button" value="Decrypt" onclick="decrypt();" />
 		</div>
 		<script src="./js/jquery-1.10.2.min.js"></script>
 		<script>
@@ -137,8 +140,18 @@
 			function encrypt() {
 				$.post("https://localhost:11337", {
 					cmd: "encrypt",
-					data: $("#data").val(),
+					data: $("#encrypt_data").val(),
 					recipients: "alice@foo.com"
+				}, function(data) {
+					$("#decrypt_data").val(data);
+				});
+			}
+
+			function decrypt() {
+				$.post("https://localhost:11337", {
+					cmd: "decrypt",
+					data: $("#decrypt_data").val(),
+					passphrase: $("#passphrase").val()
 				}, function(data) {
 					alert(data);
 				});
