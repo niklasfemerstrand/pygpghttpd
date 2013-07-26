@@ -112,9 +112,7 @@ def do_gpg(cmdstr):
 		if cc[0] and cc[1]:
 			c[cc[0]] = cc[1]
 
-	try:
-		c["cmd"]
-	except:
+	if "cmd" not in c:
 		return("Missing cmdstr for GPG op")
 
 	for cmd_ok in cmds_ok:
